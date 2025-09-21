@@ -58,25 +58,31 @@ The application follows a complete RAG pipeline from data ingestion to answer ge
 
 ## Screenshots
 
-<table align="center">
-  <tr>
-    <td align="center"><strong>Full Chat Interface</strong></td>
-    <td align="center"><strong>Tech Stack & Setup</strong></td>
-  </tr>
-  <tr>
-    <td><img src="screenshots/image2.png" width="400"></td>
-    <td><img src="screenshots/image3.png" width="400"></td>
-  </tr>
-  <tr>
-    <td align="center"><strong>Installation & Usage Guide</strong></td>
-    <td align="center"><strong>Local File Structure</strong></td>
-  </tr>
-  <tr>
-    <td><img src="screenshots/image4.png" width="400"></td>
-    <td><img src="screenshots/main.png" width="400"></td>
-  </tr>
-</table>
-
+<div align="center">
+  <h3>Screenshots</h3>
+  <table border="0" cellspacing="10" cellpadding="10">
+    <tr>
+      <td align="center">
+        <strong>Conversational Q&A Interface</strong><br><br>
+        <img src="screenshots/image2.png" alt="Full Q&A conversation" width="400">
+      </td>
+      <td align="center">
+        <strong>Easy Configuration & Upload</strong><br><br>
+        <img src="screenshots/main.png" alt="Initial application screen with configuration sidebar" width="400">
+      </td>
+    </tr>
+    <tr>
+      <td align="center">
+        <strong>Evidence from Vector Search</strong><br><br>
+        <img src="screenshots/image3.png" alt="Showing retrieved evidence from the vector search" width="400">
+      </td>
+      <td align="center">
+        <strong>Evidence from Knowledge Graph</strong><br><br>
+        <img src="screenshots/image4.jpg" alt="Showing retrieved evidence from the knowledge graph" width="400">
+      </td>
+    </tr>
+  </table>
+</div>
 ## Tech Stack
 
 -   **Backend:** Python

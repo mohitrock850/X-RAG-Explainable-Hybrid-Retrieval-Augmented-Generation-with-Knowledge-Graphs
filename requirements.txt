@@ -1,0 +1,9 @@
+streamlit
+langchain
+langchain-openai
+langchain-community
+pypdf
+faiss-cpu
+spacy==3.7.2
+neo4j
+pyvis

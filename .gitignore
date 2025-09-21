@@ -1,0 +1,32 @@
+# Byte-compiled / optimized / C extensions
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual Environments
+venv/
+.venv/
+env/
+.env/
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+
+# IDE / Editor specific files
+.idea/
+.vscode/
+
+# Operating System Files
+.DS_Store
+Thumbs.db
+
+# Secrets and Environment Variables
+# Never commit your API keys or other secrets!
+.env
+*.env
+
+# Logs
+*.log

@@ -78,7 +78,7 @@ The application follows a complete RAG pipeline from data ingestion to answer ge
       </td>
       <td align="center">
         <strong>Evidence from Knowledge Graph</strong><br><br>
-        <img src="screenshots/image4.jpg" alt="Showing retrieved evidence from the knowledge graph" width="400">
+        <img src="screenshots/image4.png" alt="Showing retrieved evidence from the knowledge graph" width="400">
       </td>
     </tr>
   </table>

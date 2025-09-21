@@ -73,7 +73,7 @@ The application follows a complete RAG pipeline from data ingestion to answer ge
   </tr>
   <tr>
     <td><img src="screenshots/image4.png" width="400"></td>
-    <td><img src="screenshots/image.png" width="400"></td>
+    <td><img src="screenshots/main.png" width="400"></td>
   </tr>
 </table>
 

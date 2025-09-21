@@ -42,20 +42,35 @@ Traditional RAG systems rely solely on semantic similarity, which can sometimes 
 -   **🔬 Explainable AI (XAI):** For transparency, the application displays the exact source chunks retrieved from both the vector store and the knowledge graph that were used to formulate the answer.
 -   **🚀 Interactive UI:** A clean and user-friendly interface built with **Streamlit** for easy document uploads and conversational Q&A.
 
-## How It Works
+## ⚙️ How It Works
 
-The application follows a complete RAG pipeline from data ingestion to answer generation:
+The X-RAG architecture uses a sophisticated hybrid pipeline to process documents and generate answers. The diagram below provides a high-level overview of the data flow, from initial PDF upload to the final, explainable response.
 
-1.  **Data Ingestion**: PDFs are uploaded through the Streamlit interface.
-2.  **Text Processing**: The raw text is extracted and split into smaller, manageable chunks.
-3.  **Knowledge Base Creation**:
-    -   **Vector Store**: Text chunks are converted into embeddings using OpenAI and stored in a FAISS vector store for semantic search.
-    -   **Knowledge Graph**: Entities (like names, places, concepts) are extracted from each chunk and stored in a Neo4j graph, linking chunks to the entities they mention.
-4.  **Hybrid Retrieval**: When a user asks a question:
-    -   The system performs a similarity search against the FAISS vector store.
-    -   It also extracts entities from the question and queries the Neo4j graph to find chunks where these entities co-exist.
-5.  **Augmented Generation**: The retrieved context from both sources is combined with the user's question and chat history, and sent to an OpenAI model to generate a final, synthesized answer.
+```mermaid
+graph TD
+    subgraph "1. Ingestion & Processing"
+        A[📄 PDFs Upload] --> B(Chunk & Process Text);
+    end
 
+    subgraph "2. Knowledge Base Creation"
+        B --> C[(Vector Store <br> FAISS)];
+        B --> D[(Knowledge Graph <br> Neo4j)];
+    end
+
+    subgraph "3. Hybrid Retrieval"
+        E[💬 User Query] --> C;
+        E --> F{Extract Entities};
+        F --> D;
+    end
+
+    subgraph "4. Augmented Generation"
+        C -->|Retrieved Chunks| G((Hybrid Context));
+        D -->|Retrieved Chunks| G;
+        H[📜 Chat History] --> G;
+        G --> I[🧠 LLM Engine <br> OpenAI];
+        I --> J[✅ Final Answer & Evidence];
+    end
+```
 ## Screenshots
 
 <div align="center">

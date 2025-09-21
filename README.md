@@ -10,122 +10,144 @@
 
 </div>
 
-X-RAG is an advanced RAG system that answers questions from PDFs by combining semantic search with a knowledge graph. While traditional RAG relies on similarity alone, X-RAG builds a dynamic **Knowledge Graph** to understand relationships between entities, leading to more accurate, explainable, and context-aware answers.
+An advanced Retrieval-Augmented Generation (RAG) system that answers questions based on uploaded PDF documents. It uniquely combines the power of semantic vector search with structured knowledge graph retrieval to provide highly accurate, context-aware, and explainable answers.
 
----
+<br>
+<p align="center">
+  <img src="screenshots/main.png" alt="Application Screenshot" width="800">
+</p>
 
-## ⚙️ How It Works
+## Table of Contents
 
-This diagram illustrates the flow from document ingestion to the final, synthesized answer, highlighting the parallel vector and graph retrieval paths.
+- [About The Project](#about-the-project)
+- [Key Features](#key-features)
+- [How It Works](#how-it-works)
+- [Screenshots](#screenshots)
+- [Tech Stack](#tech-stack)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+- [Usage](#usage)
+- [Documents Tested](#documents-tested)
 
-```mermaid
-graph TD
-    A[📄 PDFs Upload] --> B(Chunk & Process Text);
-    B --> C{Vector Store - FAISS};
-    B --> D{Knowledge Graph - Neo4j};
-    E[User Query] --> F(Extract Entities);
-    E --> C;
-    F --> D;
-    C --> G((Hybrid Context));
-    D --> G;
-    G --> H[🧠 LLM - OpenAI];
-    I[💬 Chat History] --> H;
-    H --> J[✅ Final Answer];
+## About The Project
 
-✨ Key Features
-🧠 Hybrid Retrieval: Combines semantic search (FAISS) with graph-based fact retrieval (Neo4j).
+Traditional RAG systems rely solely on semantic similarity, which can sometimes miss structured facts or relationships within a document. X-RAG enhances this process by building a dynamic **Knowledge Graph** on the fly. This hybrid approach allows the system to not only find semantically relevant text chunks but also query for explicit relationships between entities, leading to more robust and comprehensive answers.
 
-✨ Dynamic Knowledge Graph: Automatically extracts and links entities from documents using spaCy.
+## Key Features
 
-💬 Conversational Memory: Remembers recent interactions for seamless follow-up questions.
+-   **🧠 Hybrid Retrieval:** Fuses **FAISS** vector search for semantic context with **Neo4j** graph search for factual, entity-based relationships.
+-   **✨ Dynamic Knowledge Graph:** Automatically extracts key entities from documents using **spaCy** and populates them into a graph structure in real-time.
+-   **💬 Conversational Memory:** Remembers the context of recent interactions, allowing for natural, follow-up questions.
+-   **🔬 Explainable AI (XAI):** For transparency, the application displays the exact source chunks retrieved from both the vector store and the knowledge graph that were used to formulate the answer.
+-   **🚀 Interactive UI:** A clean and user-friendly interface built with **Streamlit** for easy document uploads and conversational Q&A.
 
-🔬 Explainable AI (XAI): Displays the exact source chunks used to generate each answer for full transparency.
+## How It Works
 
-🚀 Interactive UI: Clean and simple interface built with Streamlit.
+The application follows a complete RAG pipeline from data ingestion to answer generation:
 
-📸 Screenshots
+1.  **Data Ingestion**: PDFs are uploaded through the Streamlit interface.
+2.  **Text Processing**: The raw text is extracted and split into smaller, manageable chunks.
+3.  **Knowledge Base Creation**:
+    -   **Vector Store**: Text chunks are converted into embeddings using OpenAI and stored in a FAISS vector store for semantic search.
+    -   **Knowledge Graph**: Entities (like names, places, concepts) are extracted from each chunk and stored in a Neo4j graph, linking chunks to the entities they mention.
+4.  **Hybrid Retrieval**: When a user asks a question:
+    -   The system performs a similarity search against the FAISS vector store.
+    -   It also extracts entities from the question and queries the Neo4j graph to find chunks where these entities co-exist.
+5.  **Augmented Generation**: The retrieved context from both sources is combined with the user's question and chat history, and sent to an OpenAI model to generate a final, synthesized answer.
+
+## Screenshots
+
 <div align="center">
-<table border="0" cellspacing="10" cellpadding="10">
-<tr>
-<td align="center">
-<strong>Conversational Q&A Interface</strong><br><br>
-<img src="screenshots/image2.png" alt="Full Q&A conversation" width="400">
-</td>
-<td align="center">
-<strong>Easy Configuration & Upload</strong><br><br>
-<img src="screenshots/main.png" alt="Initial application screen" width="400">
-</td>
-</tr>
-<tr>
-<td align="center">
-<strong>Evidence from Vector Search</strong><br><br>
-<img src="screenshots/image3.png" alt="Evidence from vector search" width="400">
-</td>
-<td align="center">
-<strong>Evidence from Knowledge Graph</strong><br><br>
-<img src="screenshots/image4.png" alt="Evidence from knowledge graph" width="400">
-</td>
-</tr>
-</table>
+  <h3>Screenshots</h3>
+  <table border="0" cellspacing="10" cellpadding="10">
+    <tr>
+      <td align="center">
+        <strong>Conversational Q&A Interface</strong><br><br>
+        <img src="screenshots/image2.png" alt="Full Q&A conversation" width="400">
+      </td>
+      <td align="center">
+        <strong>Easy Configuration & Upload</strong><br><br>
+        <img src="screenshots/main.png" alt="Initial application screen with configuration sidebar" width="400">
+      </td>
+    </tr>
+    <tr>
+      <td align="center">
+        <strong>Evidence from Vector Search</strong><br><br>
+        <img src="screenshots/image3.png" alt="Showing retrieved evidence from the vector search" width="400">
+      </td>
+      <td align="center">
+        <strong>Evidence from Knowledge Graph</strong><br><br>
+        <img src="screenshots/image4.png" alt="Showing retrieved evidence from the knowledge graph" width="400">
+      </td>
+    </tr>
+  </table>
 </div>
+## Tech Stack
 
-🛠️ Tech Stack
-Backend: Python
+-   **Backend:** Python
+-   **LLM Orchestration:** LangChain
+-   **Vector Database:** FAISS
+-   **Graph Database:** Neo4j
+-   **Language Model:** OpenAI
+-   **UI Framework:** Streamlit
+-   **PDF Processing:** PyPDF
+-   **NLP for Entity Extraction:** spaCy
 
-LLM Orchestration: LangChain
+## Getting Started
 
-Vector DB: FAISS
+Follow these steps to set up and run the project locally.
 
-Graph DB: Neo4j
+### Prerequisites
 
-LLM: OpenAI
+-   Python 3.9+
+-   Git
+-   Neo4j Desktop (or a running Neo4j instance)
 
-UI: Streamlit
+### Installation
 
-PDF Processing: PyPDF
+1.  **Clone the repository:**
+    ```bash
+    git clone [https://github.com/mohitrock850/X-RAG-Explainable-Hybrid-Retrieval-Augmentation-with-Knowledge-Graphs.git](https://github.com/mohitrock850/X-RAG-Explainable-Hybrid-Retrieval-Augmentation-with-Knowledge-Graphs.git)
+    cd X-RAG-Explainable-Hybrid-Retrieval-Augmentation-with-Knowledge-Graphs
+    ```
 
-NLP: spaCy
+2.  **Create and activate a virtual environment:**
+    ```bash
+    # Create the environment
+    python -m venv venv
 
-🚀 Getting Started
-Prerequisites
-Python 3.9+ & Git
+    # Activate on Windows
+    .\venv\Scripts\activate
+    
+    # Activate on macOS/Linux
+    source venv/bin/activate
+    ```
 
-Neo4j Desktop
+3.  **Install the required packages:**
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-Installation
-Clone the repository:
+4.  **Download the spaCy NLP model:**
+    ```bash
+    python -m spacy download en_core_web_lg
+    ```
 
-Bash
+## Usage
 
-git clone [https://github.com/mohitrock850/X-RAG-Explainable-Hybrid-Retrieval-Augmentation-with-Knowledge-Graphs.git](https://github.com/mohitrock850/X-RAG-Explainable-Hybrid-Retrieval-Augmentation-with-Knowledge-Graphs.git)
-cd X-RAG-Explainable-Hybrid-Retrieval-Augmentation-with-Knowledge-Graphs
-Setup and activate virtual environment:
+1.  **Launch the Streamlit application** (ensure your virtual environment is activated):
+    ```bash
+    streamlit run app.py
+    ```
+2.  Open your web browser to the local URL provided (usually `http://localhost:8501`).
+3.  In the sidebar, enter your **OpenAI API Key** and your **Neo4j Credentials**.
+4.  Upload one or more PDF files.
+5.  Click the **"Process Documents"** button and wait for the knowledge base to be built.
+6.  Start asking questions in the chat box!
 
-Bash
+## Documents Tested
 
-python -m venv venv
-# Windows: .\venv\Scripts\activate | macOS/Linux: source venv/bin/activate
-Install dependencies and NLP model:
-
-Bash
-
-pip install -r requirements.txt
-python -m spacy download en_core_web_lg
-▶️ Usage
-Launch the app (from your activated environment):
-
-Bash
-
-streamlit run app.py
-Open the app in your browser.
-
-Enter your OpenAI API Key and Neo4j Credentials in the sidebar.
-
-Upload PDFs, click "Process Documents," and start asking questions!
-
-🔬 Documents Tested
-This system was successfully tested on complex technical papers, including:
-
-Attention is all You Need.pdf
-
-ImageNet Classification with Deep CNN.pdf
+This system has been successfully tested on complex technical papers, including:
+-   `Attention is all You Need.pdf`
+-   `ImageNet Classification with Deep CNN.pdf`

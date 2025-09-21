@@ -84,16 +84,33 @@ The application follows a complete RAG pipeline from data ingestion to answer ge
   </table>
 </div>
 
-## Tech Stack
+## 🛠️ Tech Stack
 
--   **Backend:** Python
--   **LLM Orchestration:** LangChain
--   **Vector Database:** FAISS
--   **Graph Database:** Neo4j
--   **Language Model:** OpenAI
--   **UI Framework:** Streamlit
--   **PDF Processing:** PyPDF
--   **NLP for Entity Extraction:** spaCy
+This project is built with a modern, powerful stack of tools and libraries:
+
+<p align="center">
+  <a href="https://www.python.org" target="_blank"> 
+    <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python">
+  </a>
+  <a href="https://www.langchain.com/" target="_blank"> 
+    <img src="https://img.shields.io/badge/LangChain-4A90E2?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj48cGF0aCBmaWxsPSIjZmZmZmZmIiBkPSJNMjggN3YxOGwtNy01VjEybDctNXptLTkgMmwtNyA1djEwbDcgNUwyMyAxMmw0LTNMMTkgOXptLTYgNWw0IDN2OGwtNCAzVjE0eiIvPjwvc3ZnPg==" alt="LangChain">
+  </a>
+  <a href="https://streamlit.io" target="_blank"> 
+    <img src="https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white" alt="Streamlit">
+  </a>
+  <a href="https://openai.com/" target="_blank"> 
+    <img src="https://img.shields.io/badge/OpenAI-412991?style=for-the-badge&logo=openai&logoColor=white" alt="OpenAI">
+  </a>
+  <a href="https://neo4j.com/" target="_blank"> 
+    <img src="https://img.shields.io/badge/Neo4j-008cc1?style=for-the-badge&logo=neo4j&logoColor=white" alt="Neo4j">
+  </a>
+  <a href="https://github.com/facebookresearch/faiss" target="_blank"> 
+    <img src="https://img.shields.io/badge/FAISS-3B5998?style=for-the-badge&logo=facebook&logoColor=white" alt="FAISS">
+  </a>
+  <a href="https://spacy.io/" target="_blank"> 
+    <img src="https://img.shields.io/badge/spaCy-09A3D5?style=for-the-badge&logo=spacy&logoColor=white" alt="spaCy">
+  </a>
+</p>
 
 ## Getting Started
 
